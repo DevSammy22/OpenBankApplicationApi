@@ -6,6 +6,7 @@ using AutoMapper;
 using BusinessLogic.Services.Implementations;
 using BusinessLogic.Services.Interfaces;
 using Data.Context;
+using Domain.Commons;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -37,6 +38,7 @@ namespace BankApplicationApi
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddControllers();
+            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "BankApplicationApi", Version = "v1" });

@@ -76,14 +76,14 @@ namespace BusinessLogic.Services.Implementations
                     _context.Entry(destinationAccount).State == EntityState.Modified)
                 {
                     transaction.TransactionStatus = TranStatus.Success;
-                    response.ResponseCode = "00";
+                    response.ResponseCode = "200";
                     response.ResponseMessage = "Transaction successful";
                     response.Data = null;
                 }
                 else
                 {
                     transaction.TransactionStatus = TranStatus.Failed;
-                    response.ResponseCode = "02";
+                    response.ResponseCode = "404";
                     response.ResponseMessage = "Transaction failed";
                     response.Data = null;
                 }
@@ -161,12 +161,11 @@ namespace BusinessLogic.Services.Implementations
                 $"{JsonConvert.SerializeObject(transaction.TransactionSourceAccount)} TO DESTINATION ACCOUNT =>" +
                 $" {JsonConvert.SerializeObject(transaction.TransactionDestinationAccount)} ON DATE =>" +
                 $" {transaction.TransactionDate} FOR AMOUNT =>{JsonConvert.SerializeObject(transaction.TransactionAmount)} TRANSACTION TYPE =>" +
-                $" {JsonConvert.SerializeObject(transaction.TransactionType)} TRANSACTION STATUS =>" +
-                $" {JsonConvert.SerializeObject(transaction.TransactionStatus)}";
+                $" {transaction.TransactionType} TRANSACTION STATUS =>" +
+                $" {transaction.TransactionStatus}";
 
             await _context.Transactions.AddAsync(transaction);
             await _context.SaveChangesAsync();
-
             return response;
         }
 
@@ -220,8 +219,8 @@ namespace BusinessLogic.Services.Implementations
                 $"{JsonConvert.SerializeObject(transaction.TransactionSourceAccount)} TO DESTINATION ACCOUNT =>" +
                 $" {JsonConvert.SerializeObject(transaction.TransactionDestinationAccount)} ON DATE =>" +
                 $" {transaction.TransactionDate} FOR AMOUNT =>{JsonConvert.SerializeObject(transaction.TransactionAmount)} TRANSACTION TYPE =>" +
-                $" {JsonConvert.SerializeObject(transaction.TransactionType)} TRANSACTION STATUS =>" +
-                $" {JsonConvert.SerializeObject(transaction.TransactionStatus)}";
+                $" {transaction.TransactionType} TRANSACTION STATUS =>" +
+                $" {transaction.TransactionStatus}";
 
             await _context.Transactions.AddAsync(transaction);
             await _context.SaveChangesAsync();

@@ -1,4 +1,5 @@
-﻿using System.Security.Principal;
+﻿using System.Collections.Generic;
+using System.Security.Principal;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -45,7 +46,7 @@ namespace BankApplicationApi.Controllers
             //    return BadRequest();
             //}
             var result = await _accountService.GetAllAccountsAsync();
-            var account = _mapper.Map<Account>(result);
+            var account = _mapper.Map<IList<GetAccountModel>>(result);
             return Ok(account);
         }
 
