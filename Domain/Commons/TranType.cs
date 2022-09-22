@@ -4,13 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Models.Commons
+namespace Domain.Commons
 {
-    public enum AccountType
+    public enum TranType
     {
-        Savings,
-        Current,
-        Corporate,
-        Government
+        Deposit,
+        Withdrawal,
+        Transfer
     }
 }

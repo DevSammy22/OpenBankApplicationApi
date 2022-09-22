@@ -1,17 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Domain.Commons;
 
-namespace Domain.Models
+namespace Data.Dtos
 {
-    [Table("Accounts")]
-    public class Account
+    public class GetAccountModel
     {
         [Key]
         public int Id { get; set; }
@@ -23,19 +20,7 @@ namespace Domain.Models
         public decimal CurrentAccountBalance { get; set; }
         public AccountType AccountType { get; set; }
         public string AccountNumberGenerated { get; set; }
-        [JsonIgnore]
-        public byte[] PinHash { get; set; }
-        [JsonIgnore]
-        public byte[] PinSalt { get; set; }
         public DateTime DateCreated { get; set; }
-        public DateTime DateLastUpdated { get; set; } 
-
-
-        Random random = new Random();
-        public Account()
-        {
-            AccountNumberGenerated = Convert.ToString((long)Math.Floor(random.NextDouble() * 9_000_000_000L + 1_000_000_000L));
-            AccountName = $"{FirstName} {LastName}";
-        }
+        public DateTime DateLastUpdated { get; set; }
     }
 }
